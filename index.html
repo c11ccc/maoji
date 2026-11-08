@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bg="warm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF7F2" />
+  <script>
+    // 首屏渲染前恢复背景，避免切换后刷新闪一下默认色
+    try {
+      var p = JSON.parse(localStorage.getItem('maoji.prefs.v1') || '{}');
+      if (['warm', 'mist', 'forest', 'dusk', 'lawn', 'home', 'planet', 'clouds'].indexOf(p.bg) > -1) {
+        document.documentElement.setAttribute('data-bg', p.bg);
+      }
+    } catch (e) {}
+  </script>
+  <meta name="description" content="毛迹 - 记录毛孩子的每一天，留下你们的共同记忆。" />
+  <title>毛迹 · 把它的每一天都留下来</title>
+  <link rel="stylesheet" href="./assets/css/style.css?v=10" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='78' font-size='80'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#/">
+        <span class="brand-mark">🐾</span>
+        <span class="brand-name">毛迹</span>
+      </a>
+      <nav class="topnav">
+        <button class="icon-btn" id="btn-feed" title="回忆流" aria-label="回忆流">📔</button>
+        <button class="icon-btn" id="btn-account" title="账号与同步" aria-label="账号与同步" hidden>👤</button>
+        <button class="icon-btn" id="btn-settings" title="设置" aria-label="设置">⚙︎</button>
+      </nav>
+    </header>
+
+    <main id="view" class="view"></main>
+
+    <footer class="footer">
+      <p>毛迹 · 所有数据仅保存在你的设备上</p>
+    </footer>
+  </div>
+
+  <!-- 通用弹窗容器 -->
+  <div class="modal-root" id="modal-root" hidden></div>
+  <div class="toast-root" id="toast-root" aria-live="polite"></div>
+
+  <script src="./assets/js/store.js?v=10"></script>
+  <script src="./assets/js/gallery.js?v=10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="./assets/js/sync.js?v=10"></script>
+  <script src="./assets/js/app.js?v=10"></script>
+</body>
+</html>
