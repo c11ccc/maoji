@@ -15,7 +15,13 @@
   </script>
   <meta name="description" content="毛迹 - 记录毛孩子的每一天，留下你们的共同记忆。" />
   <title>毛迹 · 把它的每一天都留下来</title>
-  <link rel="stylesheet" href="./assets/css/style.css?v=10" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="毛迹" />
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="./assets/css/style.css?v=11" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='78' font-size='80'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
@@ -43,10 +49,20 @@
   <div class="modal-root" id="modal-root" hidden></div>
   <div class="toast-root" id="toast-root" aria-live="polite"></div>
 
-  <script src="./assets/js/store.js?v=10"></script>
-  <script src="./assets/js/gallery.js?v=10"></script>
+  <script src="./assets/js/store.js?v=11"></script>
+  <script src="./assets/js/gallery.js?v=11"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="./assets/js/sync.js?v=10"></script>
-  <script src="./assets/js/app.js?v=10"></script>
+  <script src="./assets/js/sync.js?v=11"></script>
+  <script src="./assets/js/app.js?v=11"></script>
+  <script>
+    // 注册 Service Worker，启用离线打开和桌面图标体验
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (e) {
+          console.warn('[毛迹] SW 注册失败（不影响使用）', e);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
